@@ -24,6 +24,7 @@
     };
 
     HandView.prototype.render = function() {
+      var score;
       this.$el.children().detach();
       this.$el.html(this.template(this.collection));
       this.$el.append(this.collection.map(function(card) {
@@ -31,7 +32,12 @@
           model: card
         }).$el;
       }));
-      return this.$('.score').text(this.collection.scores()[0]);
+      if ((this.collection.scores()[1] != null) && this.collection.scores()[1] < 21) {
+        score = this.collection.scores()[1];
+      } else {
+        score = this.collection.scores()[0];
+      }
+      return this.$('.score').text(score);
     };
 
     return HandView;

@@ -25,6 +25,7 @@
     };
 
     Hand.prototype.stand = function() {
+      console.log('stand');
       return this.trigger('stand');
     };
 
@@ -41,7 +42,7 @@
         return score + (card.get('revealed') ? card.get('value') : 0);
       }, 0);
       if (hasAce) {
-        return [score, score + 10];
+        return [score, score + 9];
       } else {
         return [score];
       }

@@ -9,6 +9,7 @@ class window.Hand extends Backbone.Collection
     if @scores()[0] > 21 then @bust()
 
   stand: ->
+    console.log 'stand'
     @trigger('stand')
 
   bust: ->
@@ -24,4 +25,4 @@ class window.Hand extends Backbone.Collection
     score = @reduce (score, card) ->
       score + if card.get 'revealed' then card.get 'value' else 0
     , 0
-    if hasAce then [score, score + 10] else [score]
+    if hasAce then [score, score + 9] else [score]

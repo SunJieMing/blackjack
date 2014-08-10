@@ -13,7 +13,29 @@ class window.AppView extends Backbone.View
   initialize: ->
     @render()
     @model.get('playerHand').on('bust', =>
-      alert 'You Busted!'
+      alertFunction = () ->
+        alert 'You busted! Dealer won!'
+      setTimeout(alertFunction, 100)
+      setTimeout(@model.refresh, 200)
+
+    )
+    @model.get('dealerHand').on('bust', =>
+      alertFunction = () ->
+        alert 'Dealer busted! You are awesome!'
+      setTimeout(alertFunction, 100)
+      setTimeout(@model.refresh, 200)
+    )
+    @model.on('win', =>
+      alertFunction = () ->
+        alert 'You won!'
+      setTimeout(alertFunction, 100)
+      setTimeout(@model.refresh, 200)
+    )
+    @model.on('lose', =>
+      alertFunction = () ->
+        alert 'You lost!'
+      setTimeout(alertFunction, 100)
+      setTimeout(@model.refresh, 200)
     )
 
   render: ->

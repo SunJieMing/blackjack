@@ -23,9 +23,44 @@
 
     AppView.prototype.initialize = function() {
       this.render();
-      return this.model.get('playerHand').on('bust', (function(_this) {
+      this.model.get('playerHand').on('bust', (function(_this) {
         return function() {
-          return alert('You Busted!');
+          var alertFunction;
+          alertFunction = function() {
+            return alert('You busted! Dealer won!');
+          };
+          setTimeout(alertFunction, 100);
+          return setTimeout(_this.model.refresh, 200);
+        };
+      })(this));
+      this.model.get('dealerHand').on('bust', (function(_this) {
+        return function() {
+          var alertFunction;
+          alertFunction = function() {
+            return alert('Dealer busted! You are awesome!');
+          };
+          setTimeout(alertFunction, 100);
+          return setTimeout(_this.model.refresh, 200);
+        };
+      })(this));
+      this.model.on('win', (function(_this) {
+        return function() {
+          var alertFunction;
+          alertFunction = function() {
+            return alert('You won!');
+          };
+          setTimeout(alertFunction, 100);
+          return setTimeout(_this.model.refresh, 200);
+        };
+      })(this));
+      return this.model.on('lose', (function(_this) {
+        return function() {
+          var alertFunction;
+          alertFunction = function() {
+            return alert('You lost!');
+          };
+          setTimeout(alertFunction, 100);
+          return setTimeout(_this.model.refresh, 200);
         };
       })(this));
     };
